@@ -3,16 +3,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-class User < ActiveRecord::Base
-  has_secure_password
   has_many :carts
+  belongs_to :current_cart, class_name: "Cart"
 
-  def current_cart
-  	Cart.find_by(id: session[:cart_id])
+  def make_current_cart
+    new_cart = carts.create
+    self.current_cart_id = new_cart.id
+    self.save
   end
   
-end
-
-
 end
