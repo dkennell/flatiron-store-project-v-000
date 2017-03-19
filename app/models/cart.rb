@@ -31,7 +31,7 @@ class Cart < ActiveRecord::Base
       end
       line_item.item.save
     end
-    self.delete
+    self.line_items = []
   end
 
 end

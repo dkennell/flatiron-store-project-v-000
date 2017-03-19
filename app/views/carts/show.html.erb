@@ -8,9 +8,8 @@
     <strong>There are only <%= line_item.item.inventory %> left in stock.</strong>
   <% end %> </p>
 <% end %>
-
 <p>Order total: <strong><%= number_to_currency(@cart.total.to_f/100) %></strong> </p>
 
 <% unless @cart.status == "submitted" %>
-  <%= button_to 'Checkout', checkout_path %>
+  <%= button_to 'Checkout', checkout_path(@cart) %>
 <% end %>
